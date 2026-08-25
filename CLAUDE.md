@@ -1,48 +1,44 @@
-# Mosher Labs Basic Repo Template - Project Memory
+# iamfit — Project Memory
 
-This file contains persistent context for Claude Code sessions on this project.
-It will be automatically loaded at the start of every session.
+This file is automatically loaded at the start of every Claude Code session.
+**Read `AGENT.md` and `DECISIONS.md` immediately after this file** — they hold
+the full project context, locked v1 scope, and autonomy boundaries. This file
+only covers tooling/workflow conventions inherited from the Mosher Labs repo
+template.
 
 ## Project Overview
 
-This is a template repository for creating new Mosher Labs projects. It provides
-a standardized starting point with pre-configured tooling and workflows.
+iamfit statically analyzes Terraform HCL source to determine the exact AWS
+IAM actions a given set of resources requires, then diffs that against an
+existing role's policy or generates a least-privilege policy from scratch.
+See `AGENT.md` for full scope, architecture, and business context.
 
 **Key Details:**
 
-- **Purpose:** Template for new repositories
+- **Purpose:** Terraform-source-to-IAM-least-privilege analysis tool
 - **CI/CD:** GitHub Actions with release workflow
 - **Linting:** Pre-commit hooks for code quality
-- **Pattern:** Fork or use as template, then customize
+- **Full context:** See `AGENT.md` (project/scope/boundaries) and
+  `DECISIONS.md` (decision log — append-only, strategic/spend decisions only)
 
 ## Repository Structure
 
 ```text
-basic-repo-template/
-├── .github/workflows/     # CI/CD workflows
-│   └── release.yml        # Semantic versioning & releases
+iamfit/
+├── core/                   # HCL parser, AWS resource->IAM mapping, diff/gen engine
+├── cli/                    # thin CLI wrapper, packaged for npm/homebrew
+├── worker/                 # Cloudflare Worker — hosted API, x402/Stripe
+├── ledger/                 # public spend ledger
+├── site/                   # iamfit.dev marketing/docs
+├── .github/workflows/      # CI/CD workflows
+│   └── release.yml         # Semantic versioning & releases
 ├── .pre-commit-config.yaml
+├── AGENT.md                # full project context — read first
+├── DECISIONS.md            # decision log
+├── LEAN_CANVAS.md           # business plan / validation tracking
 ├── README.md
-└── CLAUDE.md
+└── CLAUDE.md                # this file
 ```
-
-## Using This Template
-
-### Creating a New Repo
-
-1. **Use as template:** Click "Use this template" on GitHub
-1. **Clone locally:** `git clone <your-new-repo>`
-1. **Update README.md:** Replace template content with project description
-1. **Customize workflows:** Adjust `.github/workflows/` as needed
-1. **Install pre-commit:** `pre-commit install`
-1. **Create CLAUDE.md:** Document project-specific context
-
-### Pre-configured Features
-
-- **Release workflow:** Automatic semantic versioning from Conventional Commits
-- **Pre-commit hooks:** YAML, Markdown, and commit message linting
-- **GitHub Actions:** Ready to use CI/CD
-- **Documentation:** README template with badges
 
 ## Git Workflow
 
@@ -53,9 +49,9 @@ basic-repo-template/
    - Do NOT commit with `--no-verify` unless absolutely necessary
 1. **Commit with conventional format:** `git commit -m "type: description"`
 1. **Push and create PR:** `gh pr create --title "feat: description"`
-1. **Test changes:** If your changes reference shared workflows that were also updated,
-   temporarily change the reference from `@main` to `@your-branch` to test, verify
-   the PR passes, then change back to `@main` before merging
+1. **Test changes:** If your changes reference shared workflows that were also
+   updated, temporarily change the reference from `@main` to `@your-branch`
+   to test, verify the PR passes, then change back to `@main` before merging
 1. **Merge to main:** Automatic release created based on commits
 
 **Commit Format:** Conventional Commits (enforced by pre-commit hook)
@@ -114,24 +110,30 @@ Configuration: `.markdownlint.yaml` (allows 2-space indent, 120 char lines)
 
 ### When Working on This Repo
 
+1. **Read `AGENT.md` and `DECISIONS.md` first** - full project context and
+   autonomy boundaries live there, not here
 1. **Write linter-compliant code from the start** - Don't fix after the fact
 1. **Run pre-commit hooks** BEFORE committing (fix all errors!)
 1. **Follow Conventional Commits** - Enables automatic versioning
-1. **Update CLAUDE.md** - Document important project context
+1. **Log strategic/scope/spend decisions to `DECISIONS.md`** as PROPOSED and
+   wait for sign-off — do not self-confirm these
+1. **Update `LEAN_CANVAS.md`** whenever an assumption gets real validation
+   signal, not just when code ships
 1. **Test shared workflow changes** - Use branch references before merging
 
 ## References
 
+- @AGENT.md - full project context, scope, and autonomy boundaries
+- @DECISIONS.md - decision log
+- @LEAN_CANVAS.md - business plan and validation tracking
 - @README.md - Repository overview
 - Shared Workflows: <https://github.com/Mosher-Labs/.github>
 - Conventional Commits: <https://www.conventionalcommits.org/>
 
 ---
 
-**Last Updated:** 2025-11-18
+**Last Updated:** 2026-08-25
 
-This file should be updated whenever:
-
-- Project patterns change
-- Important context is discovered
-- Tooling is added or modified
+This file should be updated whenever project patterns change, important
+context is discovered, or tooling is added/modified. Deeper project context
+belongs in `AGENT.md`, not here.
