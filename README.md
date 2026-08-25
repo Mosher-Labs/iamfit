@@ -87,6 +87,26 @@ Update the templated information:
 - [ ] Update the "Usage" section
 - [ ] Update the "Contributing" section
 
+## Development
+
+This is an npm-workspaces monorepo (`core`, `cli`, `worker`) built with
+TypeScript. Node version is pinned via [mise](https://mise.jdx.dev/)
+(`.mise.toml`).
+
+```bash
+# Install dependencies for all workspaces
+npm install
+
+# Build all workspaces
+npm run build
+
+# Run tests (vitest)
+npm run test
+
+# Lint/format check (Biome)
+npm run lint
+```
+
 ## 🔰 Contributing
 
 Upon first clone, install the pre-commit hooks.

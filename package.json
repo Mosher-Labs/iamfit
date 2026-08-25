@@ -1,0 +1,21 @@
+{
+  "name": "iamfit",
+  "private": true,
+  "description": "Statically analyzes Terraform HCL to determine required AWS IAM actions",
+  "workspaces": [
+    "core",
+    "cli",
+    "worker"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "vitest run",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.10",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  }
+}

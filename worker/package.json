@@ -1,0 +1,14 @@
+{
+  "name": "@iamfit/worker",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Cloudflare Worker -- hosted mapping-DB API, x402 (USDC) + Stripe stubs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@iamfit/core": "0.0.0"
+  }
+}
