@@ -36,6 +36,11 @@ repos:
     rev: 3.3.13
     hooks:
       - id: checkov_container
+        args:
+          - --skip-path
+          - core/fixtures
+          - --skip-path
+          - core/fixtures-invalid
   - repo: https://github.com/mosher-labs/pre-commit-autoupdate
     rev: v1.0.1
     hooks:
