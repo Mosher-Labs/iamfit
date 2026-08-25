@@ -57,6 +57,13 @@ Kept iamfit's branding independent of the user's planned consulting umbrella
 (berserker.technology) rather than merging themes — avoids diluting either
 name.
 
+**Package manager: Yarn (Berry) over npm** — CONFIRMED (2026-08-25)
+Issue #1 originally specified npm workspaces; switched to Yarn (v4, Berry)
+workspaces before that scaffold PR merged. Pinned via `packageManager` in
+root `package.json` (Corepack) and mirrored in `.mise.toml` for local dev
+without Corepack. Using the `node-modules` linker (not PnP) to keep
+tsc/vitest/Biome resolution unsurprising.
+
 ---
 
 <!-- New entries below this line -->

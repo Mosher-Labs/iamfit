@@ -87,6 +87,27 @@ Update the templated information:
 - [ ] Update the "Usage" section
 - [ ] Update the "Contributing" section
 
+## Development
+
+This is a Yarn-workspaces monorepo (`core`, `cli`, `worker`) built with
+TypeScript. Node version is pinned via [mise](https://mise.jdx.dev/)
+(`.mise.toml`); Yarn version is pinned via `packageManager` in
+`package.json` (Corepack).
+
+```bash
+# Install dependencies for all workspaces
+yarn install
+
+# Build all workspaces
+yarn build
+
+# Run tests (vitest)
+yarn test
+
+# Lint/format check (Biome)
+yarn lint
+```
+
 ## 🔰 Contributing
 
 Upon first clone, install the pre-commit hooks.
