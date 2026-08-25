@@ -40,7 +40,13 @@ describe("extractResources", () => {
   });
 
   it("ignores non-resource top-level blocks", async () => {
+    // non-resource-blocks.tf declares a variable, provider, data source,
+    // locals, and output but no `resource` block -- if these leaked through,
+    // the count below would exceed 2.
     const resources = await extractResources(fixturesDir);
+
+    expect(resources).toHaveLength(2);
+    expect(resources.some((r) => r.sourceFile === "non-resource-blocks.tf")).toBe(false);
 
     for (const resource of resources) {
       expect(resource.type).not.toBe("variable");

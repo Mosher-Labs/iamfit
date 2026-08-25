@@ -67,3 +67,17 @@ tsc/vitest/Biome resolution unsurprising.
 ---
 
 <!-- New entries below this line -->
+
+**`data` source blocks and IAM accuracy** — PROPOSED (2026-08-25)
+Issue #2's HCL ingestion intentionally skips `data` blocks (along with
+`variable`/`output`/`provider`/`locals`), per that issue's own explicit
+scope. Flagged during PR review: this is a real accuracy gap, not just an
+ingestion detail — many `data` sources require IAM read permissions during
+`terraform plan`/`apply` (e.g. `data.aws_ami` needs `ec2:DescribeImages`,
+`data.aws_caller_identity` needs `sts:GetCallerIdentity`), so ignoring them
+means iamfit can under-report required permissions for configs that lean on
+data sources. Per LEAN_CANVAS.md, accuracy is the whole value prop, so this
+is worth a dedicated future issue (data-source -> IAM action mapping,
+analogous to the resource -> IAM action mapping in issue #3) rather than
+silently living with the gap. Not scoped into #2 or #3 — proposed here for
+visibility until scheduled.
