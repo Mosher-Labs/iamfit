@@ -89,22 +89,23 @@ Update the templated information:
 
 ## Development
 
-This is an npm-workspaces monorepo (`core`, `cli`, `worker`) built with
+This is a Yarn-workspaces monorepo (`core`, `cli`, `worker`) built with
 TypeScript. Node version is pinned via [mise](https://mise.jdx.dev/)
-(`.mise.toml`).
+(`.mise.toml`); Yarn version is pinned via `packageManager` in
+`package.json` (Corepack).
 
 ```bash
 # Install dependencies for all workspaces
-npm install
+yarn install
 
 # Build all workspaces
-npm run build
+yarn build
 
 # Run tests (vitest)
-npm run test
+yarn test
 
 # Lint/format check (Biome)
-npm run lint
+yarn lint
 ```
 
 ## 🔰 Contributing

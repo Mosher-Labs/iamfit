@@ -9,6 +9,6 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@iamfit/core": "0.0.0"
+    "@iamfit/core": "workspace:*"
   }
 }
