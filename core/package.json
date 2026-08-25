@@ -1,0 +1,14 @@
+{
+  "name": "@iamfit/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "HCL parser, AWS resource-to-IAM-action mapping, diff/generation engine",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@cdktf/hcl2json": "0.21.0"
+  }
+}
