@@ -81,3 +81,15 @@ is worth a dedicated future issue (data-source -> IAM action mapping,
 analogous to the resource -> IAM action mapping in issue #3) rather than
 silently living with the gap. Not scoped into #2 or #3 — proposed here for
 visibility until scheduled.
+
+**Public ledger URL: `/books`** — PROPOSED (2026-08-25)
+Idea floated during ledger scaffolding (see `ledger/`): give the public
+spend ledger a `/books` route on iamfit.dev, mirroring Austin R.'s
+badhttp.dev convention, once `site/` exists. Not yet built -- `site/` is
+still an empty directory in the repo layout. Two open questions before
+this is CONFIRMED: (1) whether the page title/route should say "Books" or
+"Ledger" for consistency with the `ledger/` directory naming already in
+this repo, or whether borrowing Austin's exact term is the point; (2) this
+is purely a routing/naming choice, not new spend or scope, so it doesn't
+need the spend-decision sign-off process in `AGENT.md` -- just a naming
+call whenever `site/` scaffolding starts.
