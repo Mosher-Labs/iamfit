@@ -60,7 +60,9 @@ describe("extractResources", () => {
   it("surfaces HCL syntax errors with the offending file name", async () => {
     const invalidDir = join(__dirname, "..", "fixtures-invalid");
 
-    await expect(extractResources(invalidDir)).rejects.toThrow(HclParseError);
-    await expect(extractResources(invalidDir)).rejects.toThrow(/broken\.tf/);
+    const error = await extractResources(invalidDir).catch((e) => e);
+
+    expect(error).toBeInstanceOf(HclParseError);
+    expect((error as Error).message).toMatch(/broken\.tf/);
   });
 });

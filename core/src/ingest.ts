@@ -27,6 +27,10 @@ export class HclParseError extends Error {
  *   blocks -- each `resource` block yields exactly one TerraformResource.
  * - No variable interpolation: argument values are returned as hcl2json
  *   produced them (e.g. `"${var.foo}"` stays a literal string).
+ * - No duplicate-address detection: a `type`/`name` pair repeated across
+ *   files yields one TerraformResource per occurrence. Valid Terraform
+ *   config can't actually contain this (duplicate resource addresses are
+ *   a Terraform parse error), so this isn't guarded against here.
  */
 export async function extractResources(dirPath: string): Promise<TerraformResource[]> {
   const entries = await readdir(dirPath, { withFileTypes: true });
