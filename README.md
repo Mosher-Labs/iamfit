@@ -108,6 +108,17 @@ yarn test
 yarn lint
 ```
 
+## CLI Usage
+
+After `yarn build`, the `iamfit` command is available via
+`node_modules/.bin/iamfit`. See `cli/README.md` for the full `iamfit scan`
+reference.
+
+```bash
+yarn build
+node_modules/.bin/iamfit scan <dir> --policy <path-to-policy.json>
+```
+
 ## 🔰 Contributing
 
 Upon first clone, install the pre-commit hooks.

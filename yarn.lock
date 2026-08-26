@@ -152,6 +152,8 @@ __metadata:
   resolution: "@iamfit/cli@workspace:cli"
   dependencies:
     "@iamfit/core": "workspace:*"
+  bin:
+    iamfit: dist/index.js
   languageName: unknown
   linkType: soft
 
