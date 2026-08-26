@@ -33,7 +33,7 @@ repos:
     hooks:
       - id: actionlint-docker
   - repo: https://github.com/bridgecrewio/checkov
-    rev: 3.3.13
+    rev: 3.3.15
     hooks:
       - id: checkov_container
         args:
