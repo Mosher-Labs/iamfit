@@ -141,3 +141,31 @@ provider version bumps, so drift becomes an auditable diff against
 upstream instead of silent rot. Not worth building until v1 proves real
 user pull, per LEAN_CANVAS.md's validate-before-scaling stance -- logged
 here so the eventual answer isn't lost or re-litigated from scratch.
+
+**`Sid` (statement ID) checks: out of scope for `diffPolicy`** — PROPOSED
+(2026-08-26)
+Raised during PR #8 review: `IamStatement` has no `Sid` field, and
+`diffPolicy` never looks for one. Decision: `Sid` is a purely
+human-readable statement label with zero effect on how IAM evaluates or
+grants a policy, so it has no bearing on "which actions are missing" --
+the diff engine's actual job. If an org wants every statement in a
+generated/reviewed policy to carry a `Sid` for audit-trail reasons,
+that's a genuine but separate capability (policy-authoring-quality
+linting, not permission diffing) -- see the HCL-level linting entry
+below, which is the more natural home for it.
+
+**Future feature: HCL-level policy-authoring lint (pre-JSON)** — PROPOSED
+(2026-08-26)
+Raised during PR #8 review: `diffPolicy` only ever sees an
+already-rendered `IamPolicyDocument` JSON object, agnostic of where it
+came from. In practice a lot of "existing policy" input is itself
+authored in Terraform (`aws_iam_policy_document` data source +
+`jsonencode`), and once that's flattened to JSON, structural information
+is gone -- e.g. redundant `Effect = "Allow"` blocks that could be merged,
+or statements missing a `Sid` if an org mandates one. A future feature
+could reuse the `ingest.ts` HCL-parsing pipeline to read
+`data "aws_iam_policy_document"` blocks directly and lint them before
+they ever reach JSON, catching authoring-quality issues no JSON-level
+check can see. This is a distinct feature from issue #3's diff engine
+(policy-authoring lint vs. permission-diff), not a retrofit of
+`diffPolicy` -- worth its own future issue once prioritized.

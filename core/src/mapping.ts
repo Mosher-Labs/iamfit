@@ -14,6 +14,7 @@
  * S3, IAM (role/policy), and EC2 instances are seeded here -- see AGENT.md's
  * locked v1 resource scope for the full list still to be added.
  */
+/** Maps a Terraform resource type to its required-action list. Populated only for the v1-scoped types below. */
 export const RESOURCE_IAM_ACTIONS: Record<string, string[]> = {
   aws_s3_bucket: ["s3:CreateBucket", "s3:PutBucketTagging", "s3:PutBucketPolicy"],
   aws_iam_role: ["iam:CreateRole", "iam:TagRole", "iam:UpdateAssumeRolePolicy"],
