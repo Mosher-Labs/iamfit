@@ -5,6 +5,9 @@
   "description": "Thin CLI wrapper around @iamfit/core, packaged for npm/homebrew",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "iamfit": "dist/index.js"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json"
   },
