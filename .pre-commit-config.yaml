@@ -42,7 +42,7 @@ repos:
           - --skip-path
           - core/fixtures-invalid
   - repo: https://github.com/mosher-labs/pre-commit-autoupdate
-    rev: v1.0.1
+    rev: v1.2.5
     hooks:
       - id: autoupdate
   - repo: https://github.com/compilerla/conventional-pre-commit
@@ -57,7 +57,7 @@ repos:
         entry: biome check --write --no-errors-on-unmatched
         language: node
         additional_dependencies:
-          - "@biomejs/biome@2.5.10"
+          - "@biomejs/biome@2.5.15"
         types_or:
           - ts
           - tsx
