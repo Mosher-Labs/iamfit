@@ -42,7 +42,7 @@ repos:
           - --skip-path
           - core/fixtures-invalid
   - repo: https://github.com/mosher-labs/pre-commit-autoupdate
-    rev: 3be8bbd6c69bcf775d15ec32213b779b82bfacb3  # frozen: v1.2.11
+    rev: 1dd9331aa6ff32c2a28e6ab25f2d70e98965a4e7  # frozen: v1.2.13
     hooks:
       - id: autoupdate
   - repo: https://github.com/compilerla/conventional-pre-commit
